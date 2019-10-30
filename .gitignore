@@ -4,3 +4,4 @@ package-lock.json
 node_modules/
 dist/
 build/
+src/javascripts/helpers/apiKeys.json
