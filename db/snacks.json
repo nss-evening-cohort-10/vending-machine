@@ -1,0 +1,42 @@
+{
+  "snack1": {
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/91wDGontRkL._SX355_.jpg",
+    "name": "Skittles",
+    "price": 75,
+    "currentStocked": 2,
+    "lifetimeNum": 4,
+    "uid": "JqJwLBbp6ISL2qWHmuwVsUsPNBv1"
+  },
+  "snack2": {
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51H3%2B4QuKIL.jpg",
+    "name": "M&Ms",
+    "price": 75,
+    "currentStocked": 5,
+    "lifetimeNum": 11,
+    "uid": "JqJwLBbp6ISL2qWHmuwVsUsPNBv1"
+  },
+  "snack3": {
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51t8KAKbYtL.jpg",
+    "name": "Cool Ranch Doritos",
+    "price": 100,
+    "currentStocked": 15,
+    "lifetimeNum": 500,
+    "uid": "JqJwLBbp6ISL2qWHmuwVsUsPNBv1"
+  },
+  "snack4": {
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51lNFWSGZVL.jpg",
+    "name": "Cup Noodles (Shrimp)",
+    "price": 200,
+    "currentStocked": 5,
+    "lifetimeNum": 5,
+    "uid": "JqJwLBbp6ISL2qWHmuwVsUsPNBv1"
+  },
+  "snack5": {
+    "imageUrl": "https://ship.kroger.com/img/Products/500/Slim-Jim/Slim-Jim-Smoked-Beef-Sticks-Original-026200144436.jpg",
+    "name": "Slim Jim",
+    "price": "3000",
+    "currentStocked": 5,
+    "lifetimeNum": 5,
+    "uid": "12345"
+  }
+}
