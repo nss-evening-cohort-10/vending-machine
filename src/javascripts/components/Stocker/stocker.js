@@ -1,13 +1,17 @@
 import $ from 'jquery';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import smash from '../../helpers/data/smash';
-import utilities from '../../helpers/utilities';
-import stockCard from '../StockCard/stockCard';
-import './stocker.scss';
-import snackPositionData from '../../helpers/data/snackPositionData';
 
+import smash from '../../helpers/data/smash';
+import stockCard from '../StockCard/stockCard';
 import machine from '../Machine/machine';
+
+import snackPositionData from '../../helpers/data/snackPositionData';
+import snackData from '../../helpers/data/snackData';
+
+import utilities from '../../helpers/utilities';
+
+import './stocker.scss';
 
 const deleteFromMachine = (e) => {
   e.preventDefault();
@@ -45,10 +49,33 @@ const addToMachine = (e) => {
     .catch((error) => console.error(error));
 };
 
+const addNewSnack = (e) => {
+  e.stopImmediatePropagation();
+  const { uid } = firebase.auth().currentUser;
+  const newSnack = {
+    imageUrl: $('#snack-image-url').val(),
+    name: $('#snack-name').val(),
+    price: $('#snack-price').val() * 1,
+    currentStocked: 0,
+    lifetimeNum: 0,
+    uid,
+  };
+  snackData.addNewSnack(newSnack)
+    .then(() => {
+      $('#exampleModal').modal('hide');
+      // eslint-disable-next-line no-use-before-define
+      buildTheStocker(uid);
+    })
+    .catch((error) => console.error(error));
+};
+
 const buildTheStocker = (uid) => {
   smash.getSnacksWithPositions(uid)
     .then((snacks) => {
       let domString = '<h2>STOCK THE MACHINE</h2>';
+      domString += `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Add Snack
+    </button>`;
       domString += '<div class="d-flex flex-wrap">';
       snacks.forEach((snack) => {
         domString += stockCard.makeASnack(snack);
@@ -57,6 +84,7 @@ const buildTheStocker = (uid) => {
       utilities.printToDom('stock', domString);
       $('#stock').on('click', '.delete-snack-position', deleteFromMachine);
       $('#stock').on('click', '.add-snack-position', addToMachine);
+      $('#add-new-snack').click(addNewSnack);
     })
     .catch((error) => console.error(error));
 };
