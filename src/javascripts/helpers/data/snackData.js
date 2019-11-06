@@ -19,4 +19,18 @@ const getSnacksByUid = (uid) => new Promise((resolve, reject) => {
 
 const addNewSnack = (newSnack) => axios.post(`${baseUrl}/snacks.json`, newSnack);
 
-export default { getSnacksByUid, addNewSnack };
+const updateSnack = (snackId, updatedSnack) => axios.put(`${baseUrl}/snacks/${snackId}.json`, updatedSnack);
+
+const restock = (snackId, restockNum) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/snacks/${snackId}.json`)
+    .then((result) => {
+      const snackObject = result.data;
+      snackObject.currentStocked += restockNum;
+      snackObject.lifetimeNum += restockNum;
+      updateSnack(snackId, snackObject);
+      resolve();
+    })
+    .catch((error) => reject(error));
+});
+
+export default { getSnacksByUid, addNewSnack, restock };
